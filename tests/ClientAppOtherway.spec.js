@@ -11,11 +11,8 @@ test('Browser context validatin error-login', async ({page})=>{
     await userName.fill('mangesh013@gmail.com');
     await userPassword.fill('Mangesh@123');
     await loginBtn.click();
-    //console.log(await page.locator('.card-body b').nth(0).textContent());
 
-    
-    //await page.waitForLoadState('networkidle');
-    //const cardTitles = page.locator(".card-body b");
+
    await page.locator(" ").last().waitFor();
     const allTitles = await page.locator(".card-body b").
     allTextContents();
@@ -49,9 +46,13 @@ test.only('Client App Login', async({page})=>{
     console.log(await page.title());
 
     
-    const userName = page.locator('#userEmail');
-    const userPassword = page.locator('#userPassword');
-    const loginBtn = page.locator("[value='Login']");
+    await page.getByPlaceholder("email@example.com").fill(email);
+   await page.getByPlaceholder("enter your passsword").fill("Iamking@000");
+   await page.getByRole('button',{name:'Login'}).click();
+
+    const userName = page.getByPlaceholder("email@example.com");
+    const userPassword = page.getByPlaceholder('enter your passsword');
+    const loginBtn = page.getByRole('button',{name:'Login'});
     const cardName = page.locator(".field:has-text('Name on Card') input");
     const coupan = page.locator(".field:has-text('Apply Coupon') input");
     const cvvValue = page.locator(".field:has-text('CVV Code') input");
@@ -65,70 +66,43 @@ test.only('Client App Login', async({page})=>{
     console.log(titles);
     const count = await products.count();
     // Zara COat 4
-    for(let i = 0; i<count;++i){
 
-        if(await products.nth(i).locator("b").textContent() == productName){
+   await page.locator(".card-body").filter({hasText:"ZARA COAT 3"})
+   .getByRole('button',{name:"Add to Cart"}).click();
 
-            // add to cart
-            await products.nth(i).locator("text= Add to Cart").click();
-            //await page.locator("[routerlink='/dashboard/cart']").click();
-            
-            break;
-        }
-    }   
-    await page.locator("[routerlink*='cart']").click(); // click on Cart at top bar
+    await page.getByRole("listitem").getByRole('button',{name:"Cart"}).click(); // click on Cart at top bar
+    
     await page.locator("div li").first().waitFor();
-   
-    //const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
-    //expect(bool).toBeTruthy();
+   await expect(page.getByText("ZARA COAT 3")).toBeVisible();
 
-    await expect(page.locator("h3:has-text('ZARA COAT 3')")).toBeVisible();
-    console.log(await page.locator("h3:has-text('ZARA COAT 3')").textContent());
+    console.log(await page.getByText("ZARA COAT 3").textContent());
     // 32 video
-    await page.locator("text=Checkout").click();    // Click on Checout button
-    //await page.locator("button").nth(1).click();
-    //await page.pause();
+    await page.getByRole('button',{name:'Checkout'}).click();  // Click on Checout button
+   
     const message = page.locator("text=Place Order");
     await expect(message).toHaveText("Place Order");
     console.log(await message.textContent());
 
-    await page.pause()
     await cardName.fill("Mangesh Panchwagh");
-    await page.pause()
+  
     await coupan.fill("Diwali2026");
-    await page.pause();
+  
     await cvvValue.fill("123");
 
 
-    await page.locator("[placeholder*='Country']").pressSequentially('ind',{delay:100});
-    const dropdown = page.locator(".ta-results");
-    await dropdown.waitFor();
-    const optionsCount = await dropdown.locator("button").count();
-    for(let i=0; i<optionsCount; ++i){
-        
-        const text = await dropdown.locator("button").nth(i).textContent();
-        if(text === ' India'){
-            // click
-            await page.pause();
-            dropdown.locator("button").nth(i).click();
-            break;
-        }
-    }
-    //await page.pause();
-    // verify email
+    //await page.locator("[placeholder*='Country']").pressSequentially('ind',{delay:100});
+   await page.getByPlaceholder('Select Country').pressSequentially('ind',{delay:100});
+   
+   await page.getByRole('button',{name:'Ind'}).nth(1).click();
+
     const emailLabel = await page.locator("label[type='text']");
     console.log(await emailLabel.textContent());
     await expect(emailLabel).toHaveText(email);
 
-    await expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
-
-    // Make sure country dropdown/backdrop has disappeared
-//await page.locator(".ta-backdrop").waitFor({ state: "hidden" });
-
 // Verify dropdown/backdrop has closed
 await expect(page.locator(".ta-backdrop")).toBeHidden();
 
-    await page.locator(".action__submit").click(); // Click on PLACE ORDER 
+    await page.getByText("PLACE ORDER").click(); // Click on PLACE ORDER 
     // Click Place Order
     
     //await page.pause();
@@ -141,8 +115,8 @@ await expect(page.locator(".ta-backdrop")).toBeHidden();
 //const confirmationMessage = page.locator(".hero-primary");
 
 //await expect(confirmationMessage).toContainText(" Thankyou for the order. ");
-    await expect(page.locator(".hero-primary")).toHaveText(" Thankyou for the order. ");
-    // verify order id
+     await expect(page.getByText(" Thankyou for the order. ")).toBeVisible();
+    // verify order id // change from here onwoards
     const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();
     console.log(orderId);
 
