@@ -29,8 +29,9 @@ test('Playwright Special locators',async({page})=>{
     await page.locator("app-card").filter({hasText: 'Nokia Edge'}).getByRole("button").click();
 });
 
-test.only('Test Level Timeout',async({page})=>{
+test('Test Level Timeout',async({page})=>{
 
+    // timeouts step level, test level and global level
 
     test.setTimeout(60000);
     page.setDefaultTimeout(9000);

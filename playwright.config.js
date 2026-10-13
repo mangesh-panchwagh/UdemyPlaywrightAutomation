@@ -17,8 +17,10 @@ const config = ({
     actionTimeout: 10 * 1000,
     navigationTimeout:30 * 1000, 
   browserName: 'chromium',
-  headless : false
-
+  headless : false,
+  screenshot : 'on', 
+ // trace: 'on'
+  trace: 'retain-on-failure' // off,on
   },
 });
 

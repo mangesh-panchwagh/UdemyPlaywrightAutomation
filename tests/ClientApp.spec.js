@@ -40,7 +40,7 @@ test('Assignment',async ({page})=>{
     console.log(await title.last().textContent());
 });
 
-test.only('Client App Login', async({page})=>{
+test('Client App Login', async({page})=>{
 
     const email = 'mangesh013@gmail.com'
     const products = page.locator(".card-body");
@@ -92,11 +92,11 @@ test.only('Client App Login', async({page})=>{
     await expect(message).toHaveText("Place Order");
     console.log(await message.textContent());
 
-    await page.pause()
+    //await page.pause()
     await cardName.fill("Mangesh Panchwagh");
-    await page.pause()
+    //await page.pause()
     await coupan.fill("Diwali2026");
-    await page.pause();
+    //await page.pause();
     await cvvValue.fill("123");
 
 
@@ -158,10 +158,8 @@ await expect(page.locator(".ta-backdrop")).toBeHidden();
          break;
       }
    }
-   await page.pause();
    const orderIdDetails = await page.locator(".col-text").textContent();
    expect(orderId.includes(orderIdDetails)).toBeTruthy();
-   await page.pause();
 });
 
 ////////////////////////////////////////////////////////////////////////////////

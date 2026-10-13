@@ -37,7 +37,7 @@ test('Assignment',async ({page})=>{
     console.log(await title.last().textContent());
 });
 
-test.only('Client App Login', async({page})=>{
+test('Client App Login', async({page})=>{
 
     const email = 'mangesh013@gmail.com'
     const products = page.locator(".card-body");
@@ -120,11 +120,15 @@ await expect(page.locator(".ta-backdrop")).toBeHidden();
     const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();
     console.log(orderId);
 
-    await page.locator("button[routerlink*='myorders']").click();
-    await page.locator("tbody").waitFor();
-    const rows = await page.locator("tbody tr");
+   await page.getByRole('button',{name:"Orders"}).click();
+   
+   await page.locator("tbody").waitFor();
+   const rows = await page.locator("tbody tr");
  
- 
+   //await page.locator(".card-body").filter({hasText:"ZARA COAT 3"})
+   //.getByRole('button',{name:"Add to Cart"}).click();
+
+   
    for (let i = 0; i < await rows.count(); ++i) {
       const rowOrderId = await rows.nth(i).locator("th").textContent();
       if (orderId.includes(rowOrderId)) {
@@ -132,10 +136,11 @@ await expect(page.locator(".ta-backdrop")).toBeHidden();
          break;
       }
    }
-   await page.pause();
+      
+   
    const orderIdDetails = await page.locator(".col-text").textContent();
    expect(orderId.includes(orderIdDetails)).toBeTruthy();
-   await page.pause();
+   
 });
 
 ////////////////////////////////////////////////////////////////////////////////

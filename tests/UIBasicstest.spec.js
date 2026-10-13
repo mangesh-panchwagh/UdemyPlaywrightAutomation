@@ -61,7 +61,7 @@ test('Page Playwright test', async ({page})=>{
     await expect(page).toHaveTitle('Google');
 });
 
-test.only('Assignment',async ({page})=>{
+test('Assignment',async ({page})=>{
 
     await page.goto("https://rahulshettyacademy.com/client/");
     console.log(await page.title());

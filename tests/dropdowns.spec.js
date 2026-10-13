@@ -33,7 +33,7 @@ test('Handling dropdown, radio buttons', async({page})=>{
 
 });
 
-test.only('Child window handle',async({browser})=>{
+test('Child window handle',async({browser})=>{
 
     const context = await browser.newContext();
     const page = await context.newPage();
