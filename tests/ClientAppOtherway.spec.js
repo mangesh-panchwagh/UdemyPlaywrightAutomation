@@ -12,8 +12,6 @@ test('Browser context validatin error-login', async ({page})=>{
     await userPassword.fill('Mangesh@123');
     await loginBtn.click();
 
-
-   await page.locator(" ").last().waitFor();
     const allTitles = await page.locator(".card-body b").
     allTextContents();
     console.log("All Titles");
@@ -147,7 +145,7 @@ await expect(page.locator(".ta-backdrop")).toBeHidden();
 // This is the code downloaded from udemy site
 ////////////////////////////////////////////////////////////////////////////////
 
-test('@Webst Client App login', async ({ page }) => {
+test.only('@Webst Client App login', async ({ page }) => {
    //js file- Login js, DashboardPage
    const email = "anshika@gmail.com";
    const productName = 'ZARA COAT 3';

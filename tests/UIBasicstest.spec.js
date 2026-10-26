@@ -1,6 +1,6 @@
 const {test, expect} = require ('@playwright/test')
 
-test('Browser Context Playwright test', async ({browser})=>{
+test.only('Browser Context Playwright test', async ({browser})=>{
 
     // Playwright code -
     // step1 - open browser
@@ -12,6 +12,7 @@ test('Browser Context Playwright test', async ({browser})=>{
     
     const context = await browser.newContext();
     const page = await context.newPage();
+   // page.route("**/*.{jpg,png,jpeg}",route=> route.abort());
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
     console.log(await page.title());
     const userName = page.locator("#username");
@@ -19,6 +20,8 @@ test('Browser Context Playwright test', async ({browser})=>{
     const signIn = page.locator("#signInBtn");
     const checkoutBtn = page.getByRole('link', { name: /Checkout/ });
     const cardTitles = page.locator(".card-body a");
+    page.on('request',request=>console.log( request.url()));    // prints all URL
+    page.on('response',response=> console.log(response.url(),response.status()));
     // css, xpath tyoe and fill
     //await page.locator("#username").type("rahulshetty") this is deprecated
     await userName.fill("NileshPail@gmail.com");
@@ -48,6 +51,7 @@ test('Browser Context Playwright test', async ({browser})=>{
    console.log(await page.locator(".card-body a").last().textContent());
     */
    // get titles of all cards
+   await page.waitForLoadState('networkidle');
    const allTitles = await cardTitles.allTextContents();
    console.log("All titles : ");
    console.log(allTitles);

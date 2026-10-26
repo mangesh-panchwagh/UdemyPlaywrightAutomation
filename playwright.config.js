@@ -20,7 +20,7 @@ const config = ({
   headless : false,
   screenshot : 'on', 
  // trace: 'on'
-  trace: 'retain-on-failure' // off,on
+  trace: 'on' // off,on
   },
 });
 

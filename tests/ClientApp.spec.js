@@ -16,7 +16,7 @@ test('Browser context validatin error-login', async ({page})=>{
     
     //await page.waitForLoadState('networkidle');
     //const cardTitles = page.locator(".card-body b");
-   await page.locator(" ").last().waitFor();
+   //await page.locator(" ").last().waitFor();
     const allTitles = await page.locator(".card-body b").
     allTextContents();
     console.log("All Titles");
@@ -40,7 +40,7 @@ test('Assignment',async ({page})=>{
     console.log(await title.last().textContent());
 });
 
-test('Client App Login', async({page})=>{
+test.only('Client App Login', async({page})=>{
 
     const email = 'mangesh013@gmail.com'
     const products = page.locator(".card-body");
@@ -77,7 +77,8 @@ test('Client App Login', async({page})=>{
         }
     }   
     await page.locator("[routerlink*='cart']").click(); // click on Cart at top bar
-    await page.locator("div li").first().waitFor();
+      await page.getByRole("button",{name:'Cart'}).click() ;
+   await page.locator("div li").first().waitFor();
    
     //const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
     //expect(bool).toBeTruthy();
@@ -85,7 +86,8 @@ test('Client App Login', async({page})=>{
     await expect(page.locator("h3:has-text('ZARA COAT 3')")).toBeVisible();
     console.log(await page.locator("h3:has-text('ZARA COAT 3')").textContent());
     // 32 video
-    await page.locator("text=Checkout").click();    // Click on Checout button
+    //await page.locator("text=Checkout").click();    // Click on Checout button
+    await page.getByRole("button",{name:'Checkout'}).click();
     //await page.locator("button").nth(1).click();
     //await page.pause();
     const message = page.locator("text=Place Order");
