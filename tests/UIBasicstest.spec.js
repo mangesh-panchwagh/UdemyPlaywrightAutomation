@@ -1,6 +1,6 @@
 const {test, expect} = require ('@playwright/test')
 
-test.only('Browser Context Playwright test', async ({browser})=>{
+test('@Web Browser Context Playwright test', async ({browser})=>{
 
     // Playwright code -
     // step1 - open browser
@@ -58,14 +58,14 @@ test.only('Browser Context Playwright test', async ({browser})=>{
 });
 
 
-test('Page Playwright test', async ({page})=>{
+test('@Web Page Playwright test', async ({page})=>{
 
     await page.goto('https://www.google.com/');
     console.log(await page.title());
     await expect(page).toHaveTitle('Google');
 });
 
-test('Assignment',async ({page})=>{
+test('@Web Assignment',async ({page})=>{
 
     await page.goto("https://rahulshettyacademy.com/client/");
     console.log(await page.title());

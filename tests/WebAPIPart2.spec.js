@@ -83,7 +83,7 @@ test('Client App login', async () => {
  
 });
 
-test('test case 2', async()=>{
+test('@API test case 2', async()=>{
 
     const email = "";
     const productName = "ZARA COAT 3";

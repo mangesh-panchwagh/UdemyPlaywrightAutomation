@@ -7,7 +7,7 @@ class LoginPage{
         this.password = page.locator("#userPassword");
         this.page.waitForLoadState('networkidle');
     }
-
+ 
     async goTo(){
         await this.page.goto("https://rahulshettyacademy.com/client/");
     }

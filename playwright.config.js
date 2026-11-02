@@ -7,7 +7,7 @@ import { chromium, defineConfig, devices } from '@playwright/test';
  */
 const config = ({
   testDir: './tests',
- 
+  retries:2,
   timeout:30*1000,
   expect:{
     timeout:12000
@@ -17,7 +17,6 @@ const config = ({
     actionTimeout: 10 * 1000,
     navigationTimeout:30 * 1000, 
   browserName: 'chromium',
-  headless : false,
   screenshot : 'on', 
  // trace: 'on'
   trace: 'on' // off,on

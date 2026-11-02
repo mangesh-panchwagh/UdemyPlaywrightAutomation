@@ -1,5 +1,5 @@
 const{test,expect,request} = require ('@playwright/test');
-const {APiUtils} = require('./utils/APIUtils');
+const {APiUtils} = require('../utils/APiUtils');
 const loginPayload = {
     userEmail: "mangesh013@gmail.com",
     userPassword: "Mangesh@123"
@@ -59,7 +59,7 @@ test.beforeAll(async()=>{
 
 // test 1, test 2, test 3
 
-test('Client App Login API Testing',async({page})=>{
+test('@API Client App Login API Testing',async({page})=>{
 
     //const apiUtils = new APIUtils(apiContext,loginPayload);
     //const orderId = createOrder(orderPayload);

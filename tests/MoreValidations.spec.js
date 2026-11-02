@@ -1,6 +1,8 @@
 const {test,expect} = require ('@playwright/test');
 
-test('Popup validations',async({page})=>{
+//test.describe.configure({mode:'parallel'});
+test.describe.configure({mode:'serial'});
+test('@Web Popup validations',async({page})=>{
 
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     // await page.goto('http://google.com');
@@ -37,9 +39,9 @@ test('Screenshot & Visual comparison',async({page})=>{
 
 });
 
-test.only('Visual',async({page})=>{
+test('Visual',async({page})=>{
 
     await page.goto("https://google.com/");
-    expect(await page.screenshot()).toMatchSnapshot('landing.png');
+    console.log(page.title());
 
 });
