@@ -20,7 +20,7 @@ const config = ({
        name: 'safari',
        use: {
           browserName: 'webkit',
-          headless : true,
+          headless : false,
           screenshot : 'off', 
           // trace: 'on'
           trace: 'on', // off,on

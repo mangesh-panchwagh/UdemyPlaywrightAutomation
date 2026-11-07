@@ -1,1 +1,0 @@
-{"attachments":[],"errors":[{"message":"beforeAll hook failed: ReferenceError: APiUtils is not defined","trace":"ReferenceError: APiUtils is not defined\n    at C:\\My Data\\My Project\\UdemyPlaywrightAutomation\\tests\\testnetworkInterceptor.spec.js:10:20","status":"broken","timestamp":1793615581156}]}

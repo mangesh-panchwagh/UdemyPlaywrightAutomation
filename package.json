@@ -4,18 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test tests/WebAPIPart1.spec.js",
-    "regression":"npx playwright test --grep @Web",
-    "APITest":"npx playwright test --grep @API"
+    "regression": "npx playwright test",
+    "webTests": "npx playwright test --grep @Web",
+    "APITest": "npx playwright test --grep @API",
+    "allureReport": "npx playwright test --grep @Web --reporter=line,allure-playwright",
+    "SafariNewConfig": "npx playwright test --config playwright.config1.js --project=chrome"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@cucumber/cucumber": "^13.3.0",
     "@playwright/test": "^1.64.1",
     "@types/node": "^26.6.3",
-    "allure-playwright": "^3.14.0"
+    "allure-playwright": "^3.14.0",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "exceljs": "^4.4.0"
