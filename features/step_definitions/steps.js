@@ -5,15 +5,10 @@ const {expect} = require('@playwright/test');
 const playwright = require('@playwright/test');
 
 Given('a login to Ecommerce application with {string} and {string}', {timeout:100*1000}, async function (username, password){
-    const browser = await playwright.chromium.launch({
-        headless:false
-    });
-    const context = await browser.newContext();
-    const page = await context.newPage();
-     this.poManager = new POManager(page);
+
    //js file- Login js, DashboardPage
  
-   const products = page.locator(".card-body");
+   const products = this.page.locator(".card-body");
     const loginPage = this.poManager.getLoginPage();
     await loginPage.goTo();
     await loginPage.validLogin(username,password);
@@ -47,3 +42,24 @@ Then('Verify Order is present in the OrderHistory',async function () {
    expect(this.orderId.includes(await ordersHistoryPage.getOrderId())).toBeTruthy();
 
 });
+
+Given('a login to Ecommerce2 application with {string} and {string}', {timeout:100*1000},async function (username, password) {
+ 
+     await this.page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+    console.log(await this.page.title());
+    const userName = this.page.locator("#username");
+    const passWord = this.page.locator("[type='password']");
+    const signIn = this.page.locator("#signInBtn");
+
+    await userName.fill(username);
+    await passWord.fill(password);
+    await signIn.click();
+});
+
+Then('Verify Error messgae is displayed', async function () {
+  
+    console.log(await this.page.locator("[style*='block']").textContent());
+    await expect(this.page.locator("[style*='block']")).toContainText('Incorrect username/password');
+
+});
+

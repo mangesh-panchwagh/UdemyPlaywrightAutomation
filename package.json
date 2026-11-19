@@ -8,7 +8,8 @@
     "webTests": "npx playwright test --grep @Web",
     "APITest": "npx playwright test --grep @API",
     "allureReport": "npx playwright test --grep @Web --reporter=line,allure-playwright",
-    "SafariNewConfig": "npx playwright test --config playwright.config1.js --project=chrome"
+    "SafariNewConfig": "npx playwright test --config playwright.config1.js --project=chrome",
+    "CucumberRegression":"npx cucumber-js --tags '@Validation' --retry 1 --exit --format html:cucumber-report.html"
   },
   "keywords": [],
   "author": "",
